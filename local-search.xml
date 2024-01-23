@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>使用proxy和cglib实现动态代理</title>
+    <link href="/2024/01/23/My-New-Post/"/>
+    <url>/2024/01/23/My-New-Post/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>动态代理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2024/01/22/hello-world/"/>
     <url>/2024/01/22/hello-world/</url>
