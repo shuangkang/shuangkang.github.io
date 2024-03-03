@@ -16,20 +16,20 @@
   <meta name="author" content="kangkang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="对依赖注入步骤的概述">
+    <meta name="description" content="这里写简介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2024/01/26/My-New-Post/index.html">
+<meta property="og:url" content="http://example.com/2024/01/26/SpringBoot%20%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="对依赖注入步骤的概述">
+<meta property="og:description" content="这里写简介">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/DarkSpirit.png">
+<meta property="og:image" content="http://example.com/img/spring.png">
 <meta property="article:published_time" content="2024-01-26T14:22:00.000Z">
-<meta property="article:modified_time" content="2024-01-26T15:42:27.226Z">
+<meta property="article:modified_time" content="2024-02-03T02:27:44.875Z">
 <meta property="article:author" content="kangkang">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/DarkSpirit.png">
+<meta name="twitter:image" content="http://example.com/img/spring.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          788 字
+          879 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -314,68 +314,87 @@
             
               <div class="markdown-body">
                 
-                <p>对依赖注入步骤的概述</p>
+                <p>这里写简介</p>
 <span id="more"></span>
 
-<h1 id="测试环境配置"><a href="#测试环境配置" class="headerlink" title="测试环境配置"></a>测试环境配置</h1><h2 id="个人测试环境目录结构"><a href="#个人测试环境目录结构" class="headerlink" title="个人测试环境目录结构"></a>个人测试环境目录结构</h2><p><img src="https://hexo-kang.oss-cn-hangzhou.aliyuncs.com/ProjectImages/Spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%B5%8B%E8%AF%95%E7%9B%AE%E5%BD%95.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="测试环境依赖导入"><a href="#测试环境依赖导入" class="headerlink" title="测试环境依赖导入"></a>测试环境依赖导入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>     	<span class="hljs-comment">&lt;!--Spring框架--&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.3.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="测试结构"><a href="#测试结构" class="headerlink" title="测试结构"></a>测试结构</h2><h3 id="domain层"><a href="#domain层" class="headerlink" title="domain层"></a>domain层</h3><h4 id="Test01类"><a href="#Test01类" class="headerlink" title="Test01类"></a>Test01类</h4><p>@Component  代表该类被交由Spring容器管理</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kangkang.domain;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 19:58</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span> <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test1</span> &#123;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
-
-<h4 id="Test02类"><a href="#Test02类" class="headerlink" title="Test02类"></a>Test02类</h4><p>@Component  代表该类被交由Spring容器管理</p>
-<p>@AutoWired  会从Spring容器中寻找匹配的bean来注入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kangkang.domain;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 19:58</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test2</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> Test1 name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Spring自动注入:&quot;</span>+name);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="AppConfig配置类"><a href="#AppConfig配置类" class="headerlink" title="AppConfig配置类"></a>AppConfig配置类</h3><p>@ComponentScan 配置组件扫描的基础包路径，Spring 将在这些包中查找标有 @Component 注解的类。</p>
-<p>@Configuration 表明该类是一个配置类</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">package</span> com.kangkang;<br><br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.ComponentScan;<br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.Configuration;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 20:05</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@ComponentScan(<span class="hljs-string">&quot;com.kangkang&quot;</span>)</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppConfig</span> &#123;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h3 id="Test-测试类"><a href="#Test-测试类" class="headerlink" title="Test 测试类"></a>Test 测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kangkang;<br><br><span class="hljs-keyword">import</span> com.kangkang.domain.Test2;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 20:06</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <br>  <span class="hljs-type">AnnotationConfigApplicationContext</span> <span class="hljs-variable">application</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span>    <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);<br>      <br>        <span class="hljs-type">Test2</span> <span class="hljs-variable">test4</span> <span class="hljs-operator">=</span> (Test2) application.getBean(Test2.class);<br>        test2.test();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="具体执行步骤"><a href="#具体执行步骤" class="headerlink" title="具体执行步骤"></a>具体执行步骤</h2><p>程序会从Test测试类开始  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">AnnotationConfigApplicationContext</span> <span class="hljs-variable">application</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span>  <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);<br></code></pre></td></tr></table></figure>
-
-<ol>
-<li><p>首先会创建一个AnnotationConfigApplicationContext对象 ，这个类是ApplicationContex这个接口的实现类</p>
+<h1 id="SpringBoot-自动配置"><a href="#SpringBoot-自动配置" class="headerlink" title="SpringBoot 自动配置"></a>SpringBoot 自动配置</h1><h2 id="1-什么是SpringBoot的自动配置？"><a href="#1-什么是SpringBoot的自动配置？" class="headerlink" title="1.什么是SpringBoot的自动配置？"></a>1.什么是SpringBoot的自动配置？</h2><p>SpringBoot自动配置,英文为Auto-Configuration:</p>
+<ul>
+<li>它是指基于你引入的依赖jar包,对SpringBoot应用进行<strong>自动配置</strong>的</li>
+<li>它为SpringBoot框架的”开箱即用”提供了基础支持</li>
+</ul>
+<h3 id="自动装配与自动配置的区别"><a href="#自动装配与自动配置的区别" class="headerlink" title="自动装配与自动配置的区别"></a>自动装配与自动配置的区别</h3><p><em><strong>自动装配</strong>(AutoWire)与</em><em>自动配置</em><em>(Auto-Configuration)是两个概念</em></p>
+<ul>
+<li><p><strong>自动装配</strong>: 针对的是Spring中的依赖注入</p>
+</li>
+<li><p><strong>自动配置</strong>:  针对的是SpringBoot中的<strong>配置类</strong></p>
+</li>
+</ul>
+<p>补充:</p>
+<p>我们经常提到的<strong>配置类</strong>（Configuration Class）也有广义与狭义的区别:</p>
+<ul>
+<li>广义上的”<strong>配置类</strong>“:   被注解@Component 直接或间接修饰的某个类,即Spring的组件,其中就包含了被@Configuration修饰的类。</li>
+<li>狭义上的”配置类”:   特指被@Configuration注解修饰的类。</li>
+</ul>
 <hr>
-</li>
-<li><p>ApplicationContext继承了BeanFactory，这个BeanFactory才是<strong>真正</strong>去制造bean的，之后的ApplicationContext、AnnotationConfigApplicationContext都是在它的基础上提供了更多的功能，如事件发布、国际化、AOP 等，使得它更适合用于企业级应用程序的开发。</p>
-<hr>
-</li>
-<li><p>AnnotationConfigApplicationContext会根据传入参数的AppConfig.class中的@ ComponentScan这个注解中的包路径去寻找是否带@Component注解的类，以及获取类的所有属性以及方法来确认是否有@AutoWired注解或其他注解 （）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ComponentScan(&quot;com.kangkang&quot;)</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppConfig</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-SpringBoot导入第三方maven依赖"><a href="#2-SpringBoot导入第三方maven依赖" class="headerlink" title="2.SpringBoot导入第三方maven依赖"></a>2.SpringBoot导入第三方maven依赖</h2><p>通常当我们需要在 SpringBoot 中使用阿里云的OSS文件上传功能时，步骤是这样的:</p>
+<h3 id="2-1-导入相关的Starter依赖"><a href="#2-1-导入相关的Starter依赖" class="headerlink" title="2.1 导入相关的Starter依赖"></a>2.1 导入相关的Starter依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"> <span class="hljs-comment">&lt;!-- 由自己编写的 阿里云OSS文件上传的maven依赖  --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.kangkang<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aliyun-oss-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<hr>
-</li>
-<li><p>这个时候就会根据@Component注解往Spring容器中注入两个bean,(一个Test01一个Test02) 而Test02中的@AutoWired注解会从容器中得到之前注入的Test01bean,注入到Test02中的name属性中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br>  <span class="hljs-keyword">private</span> Test1 name;<br></code></pre></td></tr></table></figure>
 
-<ol>
-<li><p><strong>在容器中查找 Bean 定义：</strong> Spring 容器会根据传入的类型 <code>Test2.class</code> 在容器中查找对应的 Bean 定义。这可以是通过注解标记的类（例如 <code>@Component</code>、<code>@Service</code> 等），也可以是通过 Java 配置类中的 <code>@Bean</code> 方法定义的。</p>
-</li>
-<li><p><strong>实例化 Bean：</strong> 如果找到了匹配的 Bean 定义，Spring 会实例化一个 <code>Test2</code> 类型的对象。这可能涉及到构造函数的调用，依赖项的注入等。</p>
-</li>
-<li><p><strong>注入依赖项：</strong> 如果 <code>Test2</code> 类中有其他依赖项（通过构造函数、字段或方法注入），Spring 会尝试解析这些依赖项并递归地注入它们。</p>
-</li>
-<li><p><strong>返回 Bean 实例：</strong> 最终，<code>getBean(Test2.class)</code> 方法会返回类型为 <code>Test2</code> 的 bean 实例。</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Test2 test4 <span class="hljs-operator">=</span> (Test2) application.getBean(Test2.class)<span class="hljs-comment">;</span><br>test2.test()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
-<p>注意Spring中默认模式是单例的也就是说每个bean都是唯一的,可以通过debug一下来演示,可以看见每个对象都是一样的 Test2@1869</p>
-<p><img src="https://hexo-kang.oss-cn-hangzhou.aliyuncs.com/ProjectImages/Spring%E5%A4%9A%E4%B8%AAbean%E9%83%BD%E6%98%AF%E4%B8%80%E4%B8%AA.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-2-配置阿里云OSS"><a href="#2-2-配置阿里云OSS" class="headerlink" title="2.2 配置阿里云OSS"></a>2.2 配置阿里云OSS</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml">aliyun:<br>  oss:<br>    endpoint: https://？？？？？.aliyuncs.com<br>    accessKeyId: LTAI5txxxxxxxxX7iM<br>    accessKeySecret: gtdFm？？？？？？sgDKm51fx<br>    bucketName: ？？？？<br>    url: https://？？？？？.oss-cn-hangzhou.aliyuncs.com<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-直接使用Oss-Template"><a href="#2-3-直接使用Oss-Template" class="headerlink" title="2.3 直接使用Oss Template"></a>2.3 直接使用Oss Template</h3><p>此时SpringBoot就已经将相关Bean对象注入到IOC容器中,可以通过@AutoWired自动注入使用了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"> <br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/file&quot;)</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileController</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> OssTemplate ossTemplate;<br><br>    <span class="hljs-meta">@PostMapping(&quot;/upload&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">upload</span><span class="hljs-params">(MultipartFile imageFile)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">originalFilename</span> <span class="hljs-operator">=</span> imageFile.getOriginalFilename();<br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> imageFile.getInputStream();<br>        <span class="hljs-keyword">return</span> ossTemplate.upload(originalFilename, inputStream);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-SpringBoot自动配置的原理"><a href="#3-SpringBoot自动配置的原理" class="headerlink" title="3.SpringBoot自动配置的原理"></a>3.SpringBoot自动配置的原理</h2><h3 id="3-1-实现自动配置的重要注解"><a href="#3-1-实现自动配置的重要注解" class="headerlink" title="3.1 实现自动配置的重要注解"></a>3.1 实现自动配置的重要注解</h3><h4 id="3-1-1-ComponentScan：是来自Spring框架的一个注解-它的作用是找到符合条件的类。"><a href="#3-1-1-ComponentScan：是来自Spring框架的一个注解-它的作用是找到符合条件的类。" class="headerlink" title="3.1.1 @ComponentScan：是来自Spring框架的一个注解,它的作用是找到符合条件的类。"></a><strong>3.1.1 @ComponentScan</strong>：是来自Spring框架的一个注解,它的作用是找到符合条件的类。</h4><p><strong>使用范例</strong></p>
+<ul>
+<li>在这个例子中，Spring 将扫描 com.example.package1 和 com.example.package2 及其子包中被@Component修饰的组件。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@ComponentScan(basePackages = &#123;&quot;com.example.package1&quot;, &quot;com.example.package2&quot;&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApplication</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>在这个例子中，MyController 和 MyService 类所在的包及其子包将会被扫描，寻找带有 @Component 注解的类，将其纳入 Spring 容器。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ComponentScan(basePackageClasses = &#123;MyController.class, MyService.class&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApplication</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>如果你想要扫描一个包，但要排除所有带有 <code>@Controller</code> 注解的类，你可以这样做：</li>
+</ul>
+<p><strong><code>TypeFilter</code>：</strong> 用于按照类型过滤组件。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@ComponentScan</span>(basePackages = <span class="hljs-string">&quot;com.example.package&quot;</span>, <br>               excludeFilters = <span class="hljs-variable">@ComponentScan</span>.<span class="hljs-built_in">Filter</span>(type = FilterType.ANNOTATION, classes = Controller.class))<br>public class MyApplication &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>如果你想要扫描一个包，但只包含实现了特定接口的类。你可以这样做：</li>
+</ul>
+<p><strong><code>AssignableTypeFilter</code>：</strong> 用于按照给定类型的子类或接口过滤组件。</p>
+<p>假设有一个接口 <code>MyInterface</code> 和两个实现类 <code>MyImplementation1</code> 和 <code>MyImplementation2</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> &#123;<br>    <span class="hljs-comment">// 接口定义</span><br>&#125;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyImplementation1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">MyInterface</span> &#123;<br>    <span class="hljs-comment">// 实现类1的具体实现</span><br>&#125;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyImplementation2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">MyInterface</span> &#123;<br>    <span class="hljs-comment">// 实现类2的具体实现</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后，使用 <code>@ComponentScan</code> 注解，并在 <code>includeFilters</code> 中添加 <code>AssignableTypeFilter</code>：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Configuration</span><br><span class="hljs-variable">@ComponentScan</span>(basePackages = <span class="hljs-string">&quot;com.example&quot;</span>,<br>        includeFilters = <span class="hljs-variable">@ComponentScan</span>.<span class="hljs-built_in">Filter</span>(type = FilterType.ASSIGNABLE_TYPE, classes = MyInterface.class))<br>public class AppConfig &#123;<br><br>    <span class="hljs-comment">// 配置类内容</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>@ComponentScan</code> 注解扫描指定包路径下的组件，并使用 <code>AssignableTypeFilter</code> 来过滤出实现了 <code>MyInterface</code> 接口的类。</p>
+<p>记得在 <code>@ComponentScan</code> 注解中使用 <code>includeFilters</code> 属性时，需要将 <code>useDefaultFilters</code> 设置为 <code>false</code>，以确保只使用指定的过滤器。</p>
 <hr>
-</li>
-</ol>
-</li>
-<li><p>最后通过Test2bean对象成功调用Test 输出Test01的对象</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">Spring自动注入:<span class="hljs-keyword">com</span>.kangkang.domain.Test1<span class="hljs-subst">@8458</span>f04<br></code></pre></td></tr></table></figure></li>
-</ol>
+<h4 id="3-1-2-Import：是来自Spring框架的一个注解-它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描-Component-Scan"><a href="#3-1-2-Import：是来自Spring框架的一个注解-它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描-Component-Scan" class="headerlink" title="3.1.2@Import：是来自Spring框架的一个注解,它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描(Component Scan)"></a>3.1.2@Import：是来自Spring框架的一个注解,它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描(Component Scan)</h4><p>它支持三种导入:</p>
+<ul>
+<li>普通类 </li>
+<li>接口 <strong>ImportSelector</strong>的实现类</li>
+<li>接口 <strong>ImportBeanDefinitionRegistrar</strong>的实现类</li>
+</ul>
+<p>1.普通类范例</p>
 
                 
               </div>
@@ -422,7 +441,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div></div>
-      <div>http://example.com/2024/01/26/My-New-Post/</div>
+      <div>http://example.com/2024/01/26/SpringBoot 自动配置/</div>
     </div>
     <div class="license-meta">
       
@@ -466,7 +485,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/30/Jwt/" title="">
+                      <a href="/2024/01/26/Git/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -476,7 +495,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/23/Tool/" title="">
+                      <a href="/2024/01/26/nginx/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

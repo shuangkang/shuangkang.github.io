@@ -16,16 +16,16 @@
   <meta name="author" content="kangkang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一些常用配置信息">
+    <meta name="description" content="Filter过滤器和拦截器Interceptor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2024/01/23/Tool/index.html">
+<meta property="og:url" content="http://example.com/2024/01/26/%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一些常用配置信息">
+<meta property="og:description" content="Filter过滤器和拦截器Interceptor">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/DarkSpirit.png">
-<meta property="article:published_time" content="2024-01-23T02:22:00.000Z">
-<meta property="article:modified_time" content="2024-01-31T08:16:16.983Z">
+<meta property="article:published_time" content="2024-01-26T14:22:00.000Z">
+<meta property="article:modified_time" content="2024-02-21T09:25:27.585Z">
 <meta property="article:author" content="kangkang">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-23 10:22" pubdate>
-          2024年1月23日 上午
+        <time datetime="2024-01-26 22:22" pubdate>
+          2024年1月26日 晚上
         </time>
       </span>
     
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          656 字
+          215 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          6 分钟
+          2 分钟
         
       </span>
     
@@ -314,28 +314,15 @@
             
               <div class="markdown-body">
                 
-                <p>一些常用配置信息</p>
-<span id="more"></span>
+                <h1 id="Filter过滤器和拦截器Interceptor"><a href="#Filter过滤器和拦截器Interceptor" class="headerlink" title="Filter过滤器和拦截器Interceptor"></a>Filter过滤器和拦截器Interceptor</h1><p>过滤器和拦截器,在功方面很类似,但在具体实现方面差距还是很大；</p>
+<p>过滤器出现的时间早于拦截器</p>
+<h2 id="在SpringBoot中实现"><a href="#在SpringBoot中实现" class="headerlink" title="在SpringBoot中实现"></a>在SpringBoot中实现</h2><p>需求: 统计每个ip访问某个controller的次数</p>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="配置文件信息"><a href="#配置文件信息" class="headerlink" title="配置文件信息"></a>配置文件信息</h1><hr>
-<h2 id="SpringBoot的Application-yml配置"><a href="#SpringBoot的Application-yml配置" class="headerlink" title="SpringBoot的Application.yml配置"></a>SpringBoot的Application.yml配置</h2><h3 id="注解"><a href="#注解" class="headerlink" title="注解:"></a>注解:</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta">#指定Tomcat服务器的端口</span><br><span class="hljs-symbol">server:</span><br><span class="hljs-symbol">  port:</span> <span class="hljs-number">8080</span><br><br><br><span class="hljs-meta">#设定该路径下的最小日志等级</span><br><span class="hljs-meta">#这样的配置允许以分层的方式为不同的包和类设置日志级别</span><br><span class="hljs-symbol">logging:</span><br><span class="hljs-symbol">  level:</span><br><span class="hljs-symbol">    com:</span><br><span class="hljs-symbol">      kangkang:</span> debug<br><br><span class="hljs-meta">#spring:</span><br><span class="hljs-meta">#  datasource:</span><br><span class="hljs-meta">#    设置数据库驱动类的全限定类名。在这里，指定了 MySQL 的驱动类。</span><br><span class="hljs-meta">#    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">#    设置数据库连接的 URL。这里是连接到 MySQL 数据库的 URL，</span><br><span class="hljs-meta">#    -包括主机地址（127.0.0.1），端口号（3306），数据库名（springboot），以及其他一些连接属性（如字符集、时区等）。</span><br><span class="hljs-meta">#    url: jdbc:mysql:<span class="hljs-comment">//127.0.0.1:3306/springboot?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span></span><br><span class="hljs-meta">#    数据库的用户名</span><br><span class="hljs-meta">#    username: root</span><br><span class="hljs-meta">#    数据库的密码</span><br><span class="hljs-meta">#    password: 123456</span><br><br><span class="hljs-meta">#mybatis:</span><br><span class="hljs-meta">#  configuration:</span><br><span class="hljs-meta">#    #开启驼峰映射 将数据库下划线的字段名映射为java的驼峰命名规则</span><br><span class="hljs-meta">#    map-underscore-to-camel-case: true</span><br><span class="hljs-meta">#    #指定MyBatis的日志实现。指定为StdOutImpl</span><br><span class="hljs-meta">#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-meta">#  #指定用于MyBatis的类型别名的基础包路径。这意味着MyBatis将扫描此包及其子包，查找用于类型别名的类。</span><br><span class="hljs-meta">#  type-aliases-package: com.kangkang.boot.domain</span><br><span class="hljs-meta">#  指定Mapper XML文件的位置。在这里，classpath:mapper<span class="hljs-comment">/**/</span>*Mapper.xml</span><br><span class="hljs-meta">#  -表示MyBatis将在类路径下的 mapper 文件夹及其所有子文件夹中查找所有以 Mapper.xml 结尾的文件。这些文件通常包含MyBatis的SQL映射配置。</span><br><span class="hljs-meta">#  mapper-locations: classpath:mapper<span class="hljs-comment">/**/</span>*Mapper.xml</span><br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span><br><br><br><span class="hljs-attr">logging:</span><br>  <span class="hljs-attr">level:</span><br>    <span class="hljs-attr">com:</span><br>      <span class="hljs-attr">kangkang:</span> <span class="hljs-string">debug</span><br><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span><br><br><br><span class="hljs-attr">mybatis:</span><br>  <span class="hljs-attr">configuration:</span><br>    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br>  <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.kangkang.boot.domain</span><br>  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath:mapper/**/*Mapper.xml</span><br></code></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h2 id="Mybatis-Mpper-xml文件配置"><a href="#Mybatis-Mpper-xml文件配置" class="headerlink" title="Mybatis Mpper.xml文件配置"></a>Mybatis Mpper.xml文件配置</h2><h3 id="注解-1"><a href="#注解-1" class="headerlink" title="注解:"></a>注解:</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>： 这是一个文档类型声明（DOCTYPE <span class="hljs-keyword">declaration</span>），指定了 <span class="hljs-keyword">XML</span> 文档的 <span class="hljs-keyword">DTD</span>（文档类型定义）。在这里，它指定了 <span class="hljs-keyword">MyBatis</span> 3.0 版本的 <span class="hljs-keyword">Mapper</span> <span class="hljs-keyword">DTD</span>。</span><br><span class="hljs-meta"></span><br><span class="hljs-meta"><span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span>： 这部分是 DTD 的具体位置。DTD 文件包含了定义 MyBatis XML 文档结构的规范。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.kangkang.boot.mapper.StudentMapper&quot;</span>&gt;</span>： 这是 Mapper XML 文件的根元素，定义了该文件的命名空间。在这里，namespace 属性指定了该 Mapper 文件所属的命名空间，通常与对应的 Mapper 接口的全限定名一致，以便 MyBatis 可以将该 XML 文件与正确的 Mapper 接口关联起来。<br><br></code></pre></td></tr></table></figure>
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.kangkang.boot.mapper.StudentMapper&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><h4 id="1-创建目录和实例"><a href="#1-创建目录和实例" class="headerlink" title="1.创建目录和实例"></a>1.创建目录和实例</h4><p>在启动类当前目录下创建filter目录创建MyFilter类</p>
+<h4 id="2-实现需求"><a href="#2-实现需求" class="headerlink" title="2.实现需求"></a>2.实现需求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.health.filter;<br><br><span class="hljs-keyword">import</span> javax.servlet.*;<br><span class="hljs-keyword">import</span> javax.servlet.annotation.WebFilter;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpSession;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.Objects;<br><br><span class="hljs-meta">@WebFilter(urlPatterns = &quot;/*&quot;)</span>   <span class="hljs-comment">//表示拦截的范围</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Myfilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>        <span class="hljs-type">HttpServletRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> (HttpServletRequest) servletRequest;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ip</span> <span class="hljs-operator">=</span> request.getRemoteAddr();<br><br>        <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> request.getSession();<br>        <span class="hljs-type">Integer</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> (Integer) session.getAttribute(<span class="hljs-string">&quot;count&quot;</span>);<br>        count = Objects.isNull(count)?<span class="hljs-number">1</span>:++count;<br>        System.out.println(<span class="hljs-string">&quot;ip:&quot;</span>+ip+<span class="hljs-string">&quot;\tcount:&quot;</span>+count);<br>        session.setAttribute(<span class="hljs-string">&quot;count&quot;</span>, count);<br><br>        filterChain.doFilter(servletRequest, servletResponse);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
                 
@@ -355,7 +342,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="category-chain-item">配置信息</a>
+  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
   
   
 
@@ -383,7 +370,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div></div>
-      <div>http://example.com/2024/01/23/Tool/</div>
+      <div>http://example.com/2024/01/26/过滤器和拦截器/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月23日</div>
+          <div>2024年1月26日</div>
         </div>
       
       
@@ -427,7 +414,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/26/%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/" title="">
+                      <a href="/2024/01/26/Spring%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -436,6 +423,12 @@
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/01/23/Tool/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

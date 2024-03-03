@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Json Web Token 一个基于 RFC 7519 的开放数据标准">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/DarkSpirit.png">
+<meta property="og:image" content="http://example.com/img/JWT.png">
 <meta property="article:published_time" content="2024-01-30T14:22:00.000Z">
-<meta property="article:modified_time" content="2024-01-31T08:14:55.229Z">
+<meta property="article:modified_time" content="2024-03-03T02:10:43.677Z">
 <meta property="article:author" content="kangkang">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/DarkSpirit.png">
+<meta name="twitter:image" content="http://example.com/img/JWT.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -340,8 +340,7 @@
 </ol>
 <h3 id="3-2-可自定义"><a href="#3-2-可自定义" class="headerlink" title="3.2 可自定义"></a>3.2 可自定义</h3><p>JWT 的载荷部分可以自定义，可以存储任何 JSON 格式的数据。这意味着我们可以使用 JWT 来实现一些自定义的功能，例如存储用户喜好、配置信息等等。 </p>
 <h3 id="3-3-扩展性强"><a href="#3-3-扩展性强" class="headerlink" title="3.3 扩展性强"></a>3.3 扩展性强</h3><p>JWT 有一套标准规范，因此很容易在不同平台和语言之间共享和解析。此外，开发人员可以根据需要自定义声明（claims）来实现更加灵活的功能。</p>
-<h3 id="3-4-调试性好"><a href="#3-4-调试性好" class="headerlink" title="3.4 调试性好"></a>3.4 调试性好</h3><p>JWT 有一个简单而可读的结构，由三部分组成：头部、载荷和签名。每个部分都是Base64编码的JSON字符串，这使得开发人员能够轻松查看 JWT 的内容，了解其中包含的信息</p>
-<p>。</p>
+<h3 id="3-4-调试性好"><a href="#3-4-调试性好" class="headerlink" title="3.4 调试性好"></a>3.4 调试性好</h3><p>JWT 有一个简单而可读的结构，由三部分组成：头部、载荷和签名。每个部分都是Base64编码的JSON字符串，这使得开发人员能够轻松查看 JWT 的内容，了解其中包含的信息。</p>
 <h3 id="3-5-安全性取决于密钥管理"><a href="#3-5-安全性取决于密钥管理" class="headerlink" title="3.5 安全性取决于密钥管理"></a>3.5 安全性取决于密钥管理</h3><p>JWT 的安全性取决于密钥的管理。如果密钥被泄露或者被不当管理，他人就可以通过密钥自行生成所需的Jwt,来代替用户执行其他非法操作，因此，在使用 JWT 时，一定要注意密钥的管理，包括生成、存储、更新、分发等等。</p>
 <h3 id="3-6-无法撤销"><a href="#3-6-无法撤销" class="headerlink" title="3.6 无法撤销"></a>3.6 无法撤销</h3><p>由于 JWT 是无状态的，一旦 JWT 被签发，就无法撤销。如果用户在使用 JWT 认证期间被注销或禁用，那么服务端就无法阻止该用户继续使用之前签发的 JWT。因此，开发人员需要设计额外的机制来撤销 JWT，例如使用黑名单或者设置短期有效期等等。</p>
 <h3 id="3-7-需要缓存到客户端"><a href="#3-7-需要缓存到客户端" class="headerlink" title="3.7 需要缓存到客户端"></a>3.7 需要缓存到客户端</h3><p>当客户端向认证服务器发送登录请求以及所需信息时,返回给用户的Jwt一般需要客户端缓存，这意味着 他人有可能窃取用户的Jwt进行登录操作。</p>
@@ -464,11 +463,17 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/02/25/Redis/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/26/My-New-Post/" title="">
+                      <a href="/2024/01/26/Jtemplate/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

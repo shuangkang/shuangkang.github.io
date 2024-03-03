@@ -16,20 +16,20 @@
   <meta name="author" content="kangkang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一些常用配置信息">
+    <meta name="description" content="对依赖注入步骤的概述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2024/01/23/Tool/index.html">
+<meta property="og:url" content="http://example.com/2024/01/26/Spring%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一些常用配置信息">
+<meta property="og:description" content="对依赖注入步骤的概述">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/DarkSpirit.png">
-<meta property="article:published_time" content="2024-01-23T02:22:00.000Z">
-<meta property="article:modified_time" content="2024-01-31T08:16:16.983Z">
+<meta property="og:image" content="http://example.com/img/spring.png">
+<meta property="article:published_time" content="2024-01-26T14:22:00.000Z">
+<meta property="article:modified_time" content="2024-02-25T01:03:01.089Z">
 <meta property="article:author" content="kangkang">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/DarkSpirit.png">
+<meta name="twitter:image" content="http://example.com/img/spring.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -241,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-23 10:22" pubdate>
-          2024年1月23日 上午
+        <time datetime="2024-01-26 22:22" pubdate>
+          2024年1月26日 晚上
         </time>
       </span>
     
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          656 字
+          788 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -314,29 +314,68 @@
             
               <div class="markdown-body">
                 
-                <p>一些常用配置信息</p>
+                <p>对依赖注入步骤的概述</p>
 <span id="more"></span>
 
+<h1 id="测试环境配置"><a href="#测试环境配置" class="headerlink" title="测试环境配置"></a>测试环境配置</h1><h2 id="个人测试环境目录结构"><a href="#个人测试环境目录结构" class="headerlink" title="个人测试环境目录结构"></a>个人测试环境目录结构</h2><p><img src="https://hexo-kang.oss-cn-hangzhou.aliyuncs.com/ProjectImages/Spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%B5%8B%E8%AF%95%E7%9B%AE%E5%BD%95.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="测试环境依赖导入"><a href="#测试环境依赖导入" class="headerlink" title="测试环境依赖导入"></a>测试环境依赖导入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>     	<span class="hljs-comment">&lt;!--Spring框架--&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.3.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="测试结构"><a href="#测试结构" class="headerlink" title="测试结构"></a>测试结构</h2><h3 id="domain层"><a href="#domain层" class="headerlink" title="domain层"></a>domain层</h3><h4 id="Test01类"><a href="#Test01类" class="headerlink" title="Test01类"></a>Test01类</h4><p>@Component  代表该类被交由Spring容器管理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kangkang.domain;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 19:58</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span> <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test1</span> &#123;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
-<h1 id="配置文件信息"><a href="#配置文件信息" class="headerlink" title="配置文件信息"></a>配置文件信息</h1><hr>
-<h2 id="SpringBoot的Application-yml配置"><a href="#SpringBoot的Application-yml配置" class="headerlink" title="SpringBoot的Application.yml配置"></a>SpringBoot的Application.yml配置</h2><h3 id="注解"><a href="#注解" class="headerlink" title="注解:"></a>注解:</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta">#指定Tomcat服务器的端口</span><br><span class="hljs-symbol">server:</span><br><span class="hljs-symbol">  port:</span> <span class="hljs-number">8080</span><br><br><br><span class="hljs-meta">#设定该路径下的最小日志等级</span><br><span class="hljs-meta">#这样的配置允许以分层的方式为不同的包和类设置日志级别</span><br><span class="hljs-symbol">logging:</span><br><span class="hljs-symbol">  level:</span><br><span class="hljs-symbol">    com:</span><br><span class="hljs-symbol">      kangkang:</span> debug<br><br><span class="hljs-meta">#spring:</span><br><span class="hljs-meta">#  datasource:</span><br><span class="hljs-meta">#    设置数据库驱动类的全限定类名。在这里，指定了 MySQL 的驱动类。</span><br><span class="hljs-meta">#    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="hljs-meta">#    设置数据库连接的 URL。这里是连接到 MySQL 数据库的 URL，</span><br><span class="hljs-meta">#    -包括主机地址（127.0.0.1），端口号（3306），数据库名（springboot），以及其他一些连接属性（如字符集、时区等）。</span><br><span class="hljs-meta">#    url: jdbc:mysql:<span class="hljs-comment">//127.0.0.1:3306/springboot?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span></span><br><span class="hljs-meta">#    数据库的用户名</span><br><span class="hljs-meta">#    username: root</span><br><span class="hljs-meta">#    数据库的密码</span><br><span class="hljs-meta">#    password: 123456</span><br><br><span class="hljs-meta">#mybatis:</span><br><span class="hljs-meta">#  configuration:</span><br><span class="hljs-meta">#    #开启驼峰映射 将数据库下划线的字段名映射为java的驼峰命名规则</span><br><span class="hljs-meta">#    map-underscore-to-camel-case: true</span><br><span class="hljs-meta">#    #指定MyBatis的日志实现。指定为StdOutImpl</span><br><span class="hljs-meta">#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-meta">#  #指定用于MyBatis的类型别名的基础包路径。这意味着MyBatis将扫描此包及其子包，查找用于类型别名的类。</span><br><span class="hljs-meta">#  type-aliases-package: com.kangkang.boot.domain</span><br><span class="hljs-meta">#  指定Mapper XML文件的位置。在这里，classpath:mapper<span class="hljs-comment">/**/</span>*Mapper.xml</span><br><span class="hljs-meta">#  -表示MyBatis将在类路径下的 mapper 文件夹及其所有子文件夹中查找所有以 Mapper.xml 结尾的文件。这些文件通常包含MyBatis的SQL映射配置。</span><br><span class="hljs-meta">#  mapper-locations: classpath:mapper<span class="hljs-comment">/**/</span>*Mapper.xml</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Test02类"><a href="#Test02类" class="headerlink" title="Test02类"></a>Test02类</h4><p>@Component  代表该类被交由Spring容器管理</p>
+<p>@AutoWired  会从Spring容器中寻找匹配的bean来注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kangkang.domain;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 19:58</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test2</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> Test1 name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Spring自动注入:&quot;</span>+name);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
 
+<h3 id="AppConfig配置类"><a href="#AppConfig配置类" class="headerlink" title="AppConfig配置类"></a>AppConfig配置类</h3><p>@ComponentScan 配置组件扫描的基础包路径，Spring 将在这些包中查找标有 @Component 注解的类。</p>
+<p>@Configuration 表明该类是一个配置类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">package</span> com.kangkang;<br><br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.ComponentScan;<br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.Configuration;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 20:05</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@ComponentScan(<span class="hljs-string">&quot;com.kangkang&quot;</span>)</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppConfig</span> &#123;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Test-测试类"><a href="#Test-测试类" class="headerlink" title="Test 测试类"></a>Test 测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kangkang;<br><br><span class="hljs-keyword">import</span> com.kangkang.domain.Test2;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: //TODO</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: kangkang</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2024-01-26 20:06</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <br>  <span class="hljs-type">AnnotationConfigApplicationContext</span> <span class="hljs-variable">application</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span>    <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);<br>      <br>        <span class="hljs-type">Test2</span> <span class="hljs-variable">test4</span> <span class="hljs-operator">=</span> (Test2) application.getBean(Test2.class);<br>        test2.test();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span><br><br><br><span class="hljs-attr">logging:</span><br>  <span class="hljs-attr">level:</span><br>    <span class="hljs-attr">com:</span><br>      <span class="hljs-attr">kangkang:</span> <span class="hljs-string">debug</span><br><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span><br><br><br><span class="hljs-attr">mybatis:</span><br>  <span class="hljs-attr">configuration:</span><br>    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br>  <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.kangkang.boot.domain</span><br>  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath:mapper/**/*Mapper.xml</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="具体执行步骤"><a href="#具体执行步骤" class="headerlink" title="具体执行步骤"></a>具体执行步骤</h2><p>程序会从Test测试类开始  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">AnnotationConfigApplicationContext</span> <span class="hljs-variable">application</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span>  <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);<br></code></pre></td></tr></table></figure>
 
+<ol>
+<li><p>首先会创建一个AnnotationConfigApplicationContext对象 ，这个类是ApplicationContex这个接口的实现类</p>
+<hr>
+</li>
+<li><p>ApplicationContext继承了BeanFactory，这个BeanFactory才是<strong>真正</strong>去制造bean的，之后的ApplicationContext、AnnotationConfigApplicationContext都是在它的基础上提供了更多的功能，如事件发布、国际化、AOP 等，使得它更适合用于企业级应用程序的开发。</p>
+<hr>
+</li>
+<li><p>AnnotationConfigApplicationContext会根据传入参数的AppConfig.class中的@ ComponentScan这个注解中的包路径去寻找是否带@Component注解的类，以及获取类的所有属性以及方法来确认是否有@AutoWired注解或其他注解 （）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ComponentScan(&quot;com.kangkang&quot;)</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppConfig</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="Mybatis-Mpper-xml文件配置"><a href="#Mybatis-Mpper-xml文件配置" class="headerlink" title="Mybatis Mpper.xml文件配置"></a>Mybatis Mpper.xml文件配置</h2><h3 id="注解-1"><a href="#注解-1" class="headerlink" title="注解:"></a>注解:</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>： 这是一个文档类型声明（DOCTYPE <span class="hljs-keyword">declaration</span>），指定了 <span class="hljs-keyword">XML</span> 文档的 <span class="hljs-keyword">DTD</span>（文档类型定义）。在这里，它指定了 <span class="hljs-keyword">MyBatis</span> 3.0 版本的 <span class="hljs-keyword">Mapper</span> <span class="hljs-keyword">DTD</span>。</span><br><span class="hljs-meta"></span><br><span class="hljs-meta"><span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span>： 这部分是 DTD 的具体位置。DTD 文件包含了定义 MyBatis XML 文档结构的规范。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.kangkang.boot.mapper.StudentMapper&quot;</span>&gt;</span>： 这是 Mapper XML 文件的根元素，定义了该文件的命名空间。在这里，namespace 属性指定了该 Mapper 文件所属的命名空间，通常与对应的 Mapper 接口的全限定名一致，以便 MyBatis 可以将该 XML 文件与正确的 Mapper 接口关联起来。<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>这个时候就会根据@Component注解往Spring容器中注入两个bean,(一个Test01一个Test02) 而Test02中的@AutoWired注解会从容器中得到之前注入的Test01bean,注入到Test02中的name属性中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br>  <span class="hljs-keyword">private</span> Test1 name;<br></code></pre></td></tr></table></figure>
 
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.kangkang.boot.mapper.StudentMapper&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li><p><strong>在容器中查找 Bean 定义：</strong> Spring 容器会根据传入的类型 <code>Test2.class</code> 在容器中查找对应的 Bean 定义。这可以是通过注解标记的类（例如 <code>@Component</code>、<code>@Service</code> 等），也可以是通过 Java 配置类中的 <code>@Bean</code> 方法定义的。</p>
+</li>
+<li><p><strong>实例化 Bean：</strong> 如果找到了匹配的 Bean 定义，Spring 会实例化一个 <code>Test2</code> 类型的对象。这可能涉及到构造函数的调用，依赖项的注入等。</p>
+</li>
+<li><p><strong>注入依赖项：</strong> 如果 <code>Test2</code> 类中有其他依赖项（通过构造函数、字段或方法注入），Spring 会尝试解析这些依赖项并递归地注入它们。</p>
+</li>
+<li><p><strong>返回 Bean 实例：</strong> 最终，<code>getBean(Test2.class)</code> 方法会返回类型为 <code>Test2</code> 的 bean 实例。</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Test2 test4 <span class="hljs-operator">=</span> (Test2) application.getBean(Test2.class)<span class="hljs-comment">;</span><br>test2.test()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
-
-
+<p>注意Spring中默认模式是单例的也就是说每个bean都是唯一的,可以通过debug一下来演示,可以看见每个对象都是一样的 Test2@1869</p>
+<p><img src="https://hexo-kang.oss-cn-hangzhou.aliyuncs.com/ProjectImages/Spring%E5%A4%9A%E4%B8%AAbean%E9%83%BD%E6%98%AF%E4%B8%80%E4%B8%AA.jpg" srcset="/img/loading.gif" lazyload></p>
+<hr>
+</li>
+</ol>
+</li>
+<li><p>最后通过Test2bean对象成功调用Test 输出Test01的对象</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">Spring自动注入:<span class="hljs-keyword">com</span>.kangkang.domain.Test1<span class="hljs-subst">@8458</span>f04<br></code></pre></td></tr></table></figure></li>
+</ol>
 
                 
               </div>
@@ -355,7 +394,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" class="category-chain-item">配置信息</a>
+  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
   
   
 
@@ -383,7 +422,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div></div>
-      <div>http://example.com/2024/01/23/Tool/</div>
+      <div>http://example.com/2024/01/26/Spring的依赖注入过程/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +434,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月23日</div>
+          <div>2024年1月26日</div>
         </div>
       
       
@@ -427,7 +466,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/26/%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/" title="">
+                      <a href="/2024/01/26/nginx/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -436,6 +475,12 @@
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/01/26/%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
