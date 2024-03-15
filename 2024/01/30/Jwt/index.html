@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/JWT.png">
 <meta property="article:published_time" content="2024-01-30T14:22:00.000Z">
-<meta property="article:modified_time" content="2024-03-04T05:47:08.643Z">
+<meta property="article:modified_time" content="2024-03-15T03:09:27.651Z">
 <meta property="article:author" content="kangkang">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.1k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          17 分钟
+          18 分钟
         
       </span>
     
@@ -328,11 +328,17 @@
 <p>一种解决方案是 session 数据持久化，写入数据库或别的持久层。各种服务收到请求后，都向持久层请求数据。这种方案的优点是架构清晰，缺点是工程量比较大。另外，持久层万一挂了，就会单点失败。</p>
 <p>另一种方案是服务器索性不保存 session 数据了，所有数据都保存在客户端，每次请求都发回服务器。JWT 就是这种方案的一个代表。</p>
 <h2 id="2-Jwt组成"><a href="#2-Jwt组成" class="headerlink" title="2.Jwt组成"></a>2.Jwt组成</h2><h3 id="2-1加密之前"><a href="#2-1加密之前" class="headerlink" title="2.1加密之前"></a>2.1加密之前</h3><p><img src="https://hexo-kang.oss-cn-hangzhou.aliyuncs.com/Jwt/Jwt%E7%BB%93%E6%9E%84.jpg" srcset="/img/loading.gif" lazyload></p>
-<h3 id="2-2加密之后"><a href="#2-2加密之后" class="headerlink" title="2.2加密之后"></a>2.2加密之后</h3><p>以 . 分隔分为三个部分.</p>
+<h3 id="2-2-加密之后"><a href="#2-2-加密之后" class="headerlink" title="2.2 加密之后"></a>2.2 加密之后</h3><p>以 . 分隔分为三个部分.</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gcode">eyJhbGciOiJIUzI<span class="hljs-number">1</span><span class="hljs-symbol">NiIsInR5</span>cCI<span class="hljs-number">6</span>IkpX<span class="hljs-attr">VCJ9</span> <span class="hljs-comment">//头部</span><br>.eyJzdWIiOiIxMj<span class="hljs-name">M0</span><span class="hljs-symbol">NTY3</span>ODkwIiwibmFtZSI<span class="hljs-number">6</span>Ikpva<span class="hljs-name">G4</span>gR<span class="hljs-name">G9</span>lIiwiaWF<span class="hljs-number">0</span>Ijox<span class="hljs-symbol">NTE2</span>Mj<span class="hljs-name">M5</span>MDIyfQ <span class="hljs-comment">//载荷</span><br>.SflKxwRJSMeKKF<span class="hljs-number">2</span>QT<span class="hljs-number">4</span>fwpMeJf<span class="hljs-number">36</span>POk<span class="hljs-number">6</span>yJV_adQssw<span class="hljs-number">5</span>c <span class="hljs-comment">//签名</span><br></code></pre></td></tr></table></figure>
 
-
-
+<h3 id="2-3-Jwt令牌验证方式"><a href="#2-3-Jwt令牌验证方式" class="headerlink" title="2.3 Jwt令牌验证方式"></a>2.3 Jwt令牌验证方式</h3><ol>
+<li><strong>获取 JWT</strong>：从HTTP请求中获取JWT令牌。</li>
+<li><strong>解析 JWT</strong>：使用工具类将JWT令牌解析成头部、载荷和签名三个部分。</li>
+<li><strong>Base64 解码</strong>：对获取的JWT头部和载荷部分进行Base64解码，得到原始的 JSON 格式数据。（注意头部和载荷只是使用Base64编码这个是可逆的）</li>
+<li><strong>验证签名</strong>：使用相同的算法、服务器自己的密钥和获取的Jwt头部、载荷部分，重新计算签名。</li>
+<li><strong>比较签名</strong>：将重新计算得到的签名与JWT中的签名进行比较。如果两者一致，则认为JWT是有效的，否则认为JWT是无效的。</li>
+</ol>
+<hr>
 <h2 id="3-Jwt的特性"><a href="#3-Jwt的特性" class="headerlink" title="3.Jwt的特性"></a>3.Jwt的特性</h2><h3 id="3-1无状态性"><a href="#3-1无状态性" class="headerlink" title="3.1无状态性"></a>3.1无状态性</h3><p>JWT 不需要在服务端存储任何状态，客户端可以携带 JWT 来访问服务端，从而使服务端变得无状态。这样，服务端就可以更轻松地实现扩展和负载均衡。</p>
 <h4 id="传统登录（有状态性）："><a href="#传统登录（有状态性）：" class="headerlink" title="传统登录（有状态性）："></a><strong>传统登录（有状态性）</strong>：</h4><ol>
 <li><p><strong>登录过程</strong>：用户提供用户名和密码，认证服务器验证用户身份，并在服务器端创建一个会话。通常，服务器生成一个会话标识符（session ID），将该标识符发送给客户端。</p>
@@ -485,8 +491,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/26/SpringBoot%20%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE/" title="SpringBoot 自动配置原理">
-                        <span class="hidden-mobile">SpringBoot 自动配置原理</span>
+                      <a href="/2024/01/26/Spring%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B/" title="Spring的依赖注入过程">
+                        <span class="hidden-mobile">Spring的依赖注入过程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
