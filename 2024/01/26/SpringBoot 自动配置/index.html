@@ -16,18 +16,18 @@
   <meta name="author" content="kangkang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这里写简介">
+    <meta name="description" content="简化Spring应用的配置和开发过程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 自动配置原理">
 <meta property="og:url" content="http://example.com/2024/01/26/SpringBoot%20%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这里写简介">
+<meta property="og:description" content="简化Spring应用的配置和开发过程">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/spring.png">
 <meta property="article:published_time" content="2024-01-26T14:22:00.000Z">
-<meta property="article:modified_time" content="2024-03-03T09:13:36.268Z">
+<meta property="article:modified_time" content="2024-03-15T04:03:59.060Z">
 <meta property="article:author" content="kangkang">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/spring.png">
   
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          879 字
+          872 字
         
       </span>
     
@@ -314,12 +314,7 @@
             
               <div class="markdown-body">
                 
-                <p>这里写简介</p>
-<span id="more"></span>
-
-
-
-<h1 id="SpringBoot-自动配置"><a href="#SpringBoot-自动配置" class="headerlink" title="SpringBoot 自动配置"></a>SpringBoot 自动配置</h1><h2 id="1-什么是SpringBoot的自动配置？"><a href="#1-什么是SpringBoot的自动配置？" class="headerlink" title="1.什么是SpringBoot的自动配置？"></a>1.什么是SpringBoot的自动配置？</h2><p>SpringBoot自动配置,英文为Auto-Configuration:</p>
+                <h1 id="SpringBoot-自动配置"><a href="#SpringBoot-自动配置" class="headerlink" title="SpringBoot 自动配置"></a>SpringBoot 自动配置</h1><h2 id="1-什么是SpringBoot的自动配置？"><a href="#1-什么是SpringBoot的自动配置？" class="headerlink" title="1.什么是SpringBoot的自动配置？"></a>1.什么是SpringBoot的自动配置？</h2><p>SpringBoot自动配置,英文为Auto-Configuration:</p>
 <ul>
 <li>它是指基于你引入的依赖jar包,对SpringBoot应用进行<strong>自动配置</strong>的</li>
 <li>它为SpringBoot框架的”开箱即用”提供了基础支持</li>
@@ -352,7 +347,8 @@
 
 
 
-<h2 id="3-SpringBoot自动配置的原理"><a href="#3-SpringBoot自动配置的原理" class="headerlink" title="3.SpringBoot自动配置的原理"></a>3.SpringBoot自动配置的原理</h2><h3 id="3-1-实现自动配置的重要注解"><a href="#3-1-实现自动配置的重要注解" class="headerlink" title="3.1 实现自动配置的重要注解"></a>3.1 实现自动配置的重要注解</h3><h4 id="3-1-1-ComponentScan：是来自Spring框架的一个注解-它的作用是找到符合条件的类。"><a href="#3-1-1-ComponentScan：是来自Spring框架的一个注解-它的作用是找到符合条件的类。" class="headerlink" title="3.1.1 @ComponentScan：是来自Spring框架的一个注解,它的作用是找到符合条件的类。"></a><strong>3.1.1 @ComponentScan</strong>：是来自Spring框架的一个注解,它的作用是找到符合条件的类。</h4><p><strong>使用范例</strong></p>
+<h2 id="3-SpringBoot自动配置的原理"><a href="#3-SpringBoot自动配置的原理" class="headerlink" title="3.SpringBoot自动配置的原理"></a>3.SpringBoot自动配置的原理</h2><h3 id="3-1-实现自动配置的重要注解"><a href="#3-1-实现自动配置的重要注解" class="headerlink" title="3.1 实现自动配置的重要注解"></a>3.1 实现自动配置的重要注解</h3><h4 id="3-1-1-ComponentScan"><a href="#3-1-1-ComponentScan" class="headerlink" title="3.1.1 @ComponentScan"></a><strong>3.1.1 @ComponentScan</strong></h4><p>是来自Spring框架的一个注解,它的作用是找到符合条件的类。</p>
+<p><strong>使用范例</strong></p>
 <ul>
 <li>在这个例子中，Spring 将扫描 com.example.package1 和 com.example.package2 及其子包中被@Component修饰的组件。</li>
 </ul>
@@ -388,7 +384,8 @@
 <p>在这个例子中，<code>@ComponentScan</code> 注解扫描指定包路径下的组件，并使用 <code>AssignableTypeFilter</code> 来过滤出实现了 <code>MyInterface</code> 接口的类。</p>
 <p>记得在 <code>@ComponentScan</code> 注解中使用 <code>includeFilters</code> 属性时，需要将 <code>useDefaultFilters</code> 设置为 <code>false</code>，以确保只使用指定的过滤器。</p>
 <hr>
-<h4 id="3-1-2-Import：是来自Spring框架的一个注解-它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描-Component-Scan"><a href="#3-1-2-Import：是来自Spring框架的一个注解-它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描-Component-Scan" class="headerlink" title="3.1.2@Import：是来自Spring框架的一个注解,它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描(Component Scan)"></a>3.1.2@Import：是来自Spring框架的一个注解,它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描(Component Scan)</h4><p>它支持三种导入:</p>
+<h4 id="3-1-2-Import"><a href="#3-1-2-Import" class="headerlink" title="3.1.2@Import"></a>3.1.2@Import</h4><p>是来自Spring框架的一个注解,它的作用是提供一种显式地从其他地方加载配置类的方式，这样可以避免使用性能较差的组件扫描(Component Scan)</p>
+<p>它支持三种导入:</p>
 <ul>
 <li>普通类 </li>
 <li>接口 <strong>ImportSelector</strong>的实现类</li>
@@ -428,7 +425,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
       
     </div>
   
@@ -485,9 +482,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/26/Spring%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B/" title="Spring的依赖注入过程">
+                      <a href="/2024/01/26/Jtemplate/" title="这是一个模板">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Spring的依赖注入过程</span>
+                        <span class="hidden-mobile">这是一个模板</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -495,8 +492,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/26/%E8%8B%8D%E7%A9%B9%E5%A4%96%E5%8D%96/" title="这是一个模板">
-                        <span class="hidden-mobile">这是一个模板</span>
+                      <a href="/2024/01/26/Spring%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B/" title="Spring的依赖注入过程">
+                        <span class="hidden-mobile">Spring的依赖注入过程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
